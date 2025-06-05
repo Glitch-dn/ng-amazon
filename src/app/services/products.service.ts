@@ -5,6 +5,7 @@ import { ProductsResponse } from '../models/product';
   providedIn: 'root'
 })
 export class ProductsService {
+  ricerca: string = '';
 
   constructor() { }
 
@@ -13,5 +14,11 @@ export class ProductsService {
     const data:ProductsResponse = await res.json();
     // console.log(data);
     return data;
+  }
+
+  aggiornaStringaRicerca(r: string){
+    console.log('Ricerca aggiornata:', r);
+    
+    this.ricerca = r;
   }
 }
