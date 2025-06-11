@@ -17,11 +17,10 @@ export class ProductListComponent implements OnInit {
     this.pService.getProducts()
     .then(data => this.products = data.products)
     .catch(error => console.error('Error fetching products:', error));
-
-    this.products.filter(p => p.title == this.pService.ricerca)
+    
   }
 
-  filterProducts(){
+  filteredProducts(){
     if(this.pService.ricerca !== ''){
       return this.products.filter(p => p.title.toLowerCase().includes(this.pService.ricerca.toLowerCase()));
     }
