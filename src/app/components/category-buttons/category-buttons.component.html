@@ -1,0 +1,37 @@
+<button
+  class="btn btn-primary my-4"
+  type="button"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#offcanvasWithBothOptions"
+  aria-controls="offcanvasWithBothOptions"
+  (click)="toggleOffcanvas()"
+>
+  Categories
+</button>
+
+<div
+  class="offcanvas offcanvas-start"
+  [ngClass]="{ show: isOffcanvasVisible }"
+  data-bs-scroll="true"
+  tabindex="-1"
+  id="offcanvasWithBothOptions"
+  aria-labelledby="offcanvasWithBothOptionsLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+      Choose category
+    </h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+      (click)="toggleOffcanvas()"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    @for (c of categories; track $index) {
+    <p>{{ c.name }}</p>
+    }
+  </div>
+</div>
