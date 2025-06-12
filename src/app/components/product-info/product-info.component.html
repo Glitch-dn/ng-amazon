@@ -1,0 +1,181 @@
+@if (product) {
+<div class="card mb-4">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img
+        [src]="product.thumbnail"
+        class="img-fluid rounded-start"
+        alt="{{ product.title }}"
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h2 class="card-title">{{ product.title }}</h2>
+        <h5 class="card-subtitle mb-2 text-muted">
+          {{ product.brand }}
+          <span class="ms-2 badge bg-secondary">SKU: {{ product.sku }}</span>
+        </h5>
+        <div class="mb-2">
+          <span class="badge bg-info me-2">{{ product.category }}</span>
+          <span class="badge bg-success">{{ product.availabilityStatus }}</span>
+          <span class="badge bg-light text-dark ms-1">{{ product.tags }}</span>
+        </div>
+        <p class="card-text">{{ product.description }}</p>
+        <div class="my-3">
+          <span class="h4 text-primary me-2">{{
+            product.price | currency : "EUR"
+          }}</span>
+          <span
+            *ngIf="product.discountPercentage > 0"
+            class="badge bg-warning text-dark"
+          >
+            -{{ product.discountPercentage }}%
+          </span>
+        </div>
+        <div class="mb-2">
+          <ng-container *ngIf="product.rating">
+            <span class="me-2">Valutazione: </span>
+            <span class="text-warning">
+              <i class="bi bi-star-fill"></i> {{ product.rating }}/5
+            </span>
+          </ng-container>
+          <span class="ms-3">Disponibili: {{ product.stock }}</span>
+          <span class="ms-3"
+            >Min. ordine: {{ product.minimumOrderQuantity }}</span
+          >
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h2 class="card-title">{{ product.title }}</h2>
+            <h5 class="card-subtitle mb-2 text-muted">
+              {{ product.brand }}
+              <span class="ms-2 badge bg-secondary"
+                >SKU: {{ product.sku }}</span
+              >
+            </h5>
+            <div class="mb-2">
+              <span class="badge bg-info me-2">{{ product.category }}</span>
+              <span class="badge bg-success">{{
+                product.availabilityStatus
+              }}</span>
+              <span class="badge bg-light text-dark ms-1">{{
+                product.tags
+              }}</span>
+            </div>
+            <p class="card-text">{{ product.description }}</p>
+            <div class="my-3">
+              <span class="h4 text-primary me-2">{{
+                product.price | currency : "EUR"
+              }}</span>
+              <span
+                *ngIf="product.discountPercentage > 0"
+                class="badge bg-warning text-dark"
+              >
+                -{{ product.discountPercentage }}%
+              </span>
+            </div>
+            <div class="mb-2">
+              <ng-container *ngIf="product.rating">
+                <span class="me-2">Valutazione: </span>
+                <span class="text-warning">
+                  <i class="bi bi-star-fill"></i> {{ product.rating }}/5
+                </span>
+              </ng-container>
+              <span class="ms-3">Disponibili: {{ product.stock }}</span>
+              <span class="ms-3"
+                >Min. ordine: {{ product.minimumOrderQuantity }}</span
+              >
+            </div>
+            <ul class="list-group list-group-flush my-3">
+              <li class="list-group-item">
+                <strong>Peso:</strong> {{ product.weight }} kg
+              </li>
+              <li class="list-group-item">
+                <strong>Dimensioni:</strong>
+                {{ product.dimensions.width }} x
+                {{ product.dimensions.height }} x
+                {{ product.dimensions.depth }} cm
+              </li>
+              <li class="list-group-item">
+                <strong>Garanzia:</strong> {{ product.warrantyInformation }}
+              </li>
+              <li class="list-group-item">
+                <strong>Spedizione:</strong> {{ product.shippingInformation }}
+              </li>
+              <li class="list-group-item">
+                <strong>Politica di reso:</strong> {{ product.returnPolicy }}
+              </li>
+            </ul>
+            <div class="mb-2 d-flex flex-column gap-3">
+              <strong>Barcode:</strong>
+              <img
+                [src]="
+                  'https://barcode.tec-it.com/barcode.ashx?data=' +
+                  product.meta.barcode
+                "
+                alt="Barcode"
+                class="img-fluid"
+                style="width: 20%"
+              /><br />
+              <strong>QR Code:</strong>
+              <img
+                [src]="
+                  'https://api.qrserver.com/v1/create-qr-code/?data=' +
+                  product.meta.qrCode +
+                  '&size=150x150'
+                "
+                alt="QR Code"
+                class="img-fluid"
+                style="width: 20%"
+              />
+            </div>
+            <div class="mb-2">
+              <small class="text-muted"
+                >Creato il: {{ product.meta.createdAt | date }}</small
+              ><br />
+              <small class="text-muted"
+                >Ultima modifica: {{ product.meta.updatedAt | date }}</small
+              >
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="card-header">
+              <h5 class="mb-0">Recensioni ({{ product.reviews.length }})</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li
+                *ngFor="let review of product.reviews"
+                class="list-group-item"
+              >
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <strong>{{ review.reviewerName }}</strong>
+                    <span class="text-muted ms-2"
+                      >({{ review.reviewerEmail }})</span
+                    >
+                  </div>
+                  <span class="badge bg-warning text-dark">
+                    <i class="bi bi-star-fill"></i> {{ review.rating }}/5
+                  </span>
+                </div>
+                <div class="mt-1">{{ review.comment }}</div>
+                <small class="text-muted">{{ review.date | date }}</small>
+              </li>
+              <li
+                *ngIf="!product.reviews || product.reviews.length === 0"
+                class="list-group-item"
+              >
+                Nessuna recensione disponibile.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+} @else {
+<div class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+}
