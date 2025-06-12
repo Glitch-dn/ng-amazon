@@ -4,8 +4,7 @@
     class="form-control"
     placeholder="Cerca prodotti..."
     [(ngModel)]="stringaRicerca"
+    (keypress)="eseguiRicerca()"
   />
-  <button type="button" class="btn btn-primary" (click)="eseguiRicerca()">
-    Cerca
-  </button>
+  <button type="button" class="btn btn-primary">Cerca</button>
 </div>

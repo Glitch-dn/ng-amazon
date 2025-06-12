@@ -30,11 +30,17 @@
     ></button>
   </div>
   <div class="offcanvas-body" style="border-top: 1px solid rgb(207, 207, 207)">
-    <a href="#" style="text-decoration: none; color: rgb(207, 207, 207)"
+    <a
+      href="#"
+      style="text-decoration: none; color: rgb(207, 207, 207)"
+      (click)="selectCategory($event, '')"
       ><p>All</p></a
     >
     @for (c of categories; track $index) {
-    <a href="#" style="text-decoration: none; color: rgb(207, 207, 207)"
+    <a
+      href="#"
+      style="text-decoration: none; color: rgb(207, 207, 207)"
+      (click)="selectCategory($event, c.slug)"
       ><p>{{ c.name }}</p></a
     >
     }

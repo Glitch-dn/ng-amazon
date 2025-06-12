@@ -13,5 +13,6 @@ export class SearchBarComponent {
   pService: ProductsService=inject(ProductsService);
   eseguiRicerca() {
     this.pService.aggiornaStringaRicerca(this.stringaRicerca);
+    this.stringaRicerca = '';
   }
 }

@@ -24,5 +24,8 @@ export class CategoryButtonsComponent implements OnInit {
     this.isOffcanvasVisible = !this.isOffcanvasVisible;
   }
 
-
+  selectCategory(event: Event, category: string) {
+    event.preventDefault();
+    this.pService.selectedCategory = category;
+  }
 }

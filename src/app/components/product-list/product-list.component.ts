@@ -21,13 +21,26 @@ export class ProductListComponent implements OnInit {
     .then(data => this.products = data.products)
     .catch(error => console.error('Error fetching products:', error));
     
+    this.pService.getProductsByCategory('smartphones')
   }
 
   filteredProducts(){
-    if(this.pService.ricerca !== ''){
-      return this.products.filter(p => p.title.toLowerCase().includes(this.pService.ricerca.toLowerCase()));
+    if (this.pService.ricerca !== '') {
+      return this.products.filter(p => 
+      p.title.toLowerCase().includes(this.pService.ricerca.toLowerCase()) ||
+      p.brand?.toLowerCase().includes(this.pService.ricerca.toLowerCase()) ||
+      p.category.toLowerCase().includes(this.pService.ricerca.toLowerCase())
+      );
+    } 
+    else if (this.pService.selectedCategory !== '') {
+      if( this.pService.selectedCategory === '') {
+        return this.products;
+      }
+      else {
+        return this.products.filter(p => p.category === this.pService.selectedCategory);
+      }
     }
-    else{
+    else {
       return this.products;
     }
   }

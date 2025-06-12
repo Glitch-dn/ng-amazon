@@ -7,6 +7,7 @@ import { CategoryResponse } from '../models/category';
 })
 export class ProductsService {
   ricerca: string = '';
+  selectedCategory: string = '';
 
   constructor() { }
 
@@ -34,9 +35,13 @@ export class ProductsService {
     return data;
    }
 
+   async getProductsByCategory(category: string): Promise<ProductsResponse> {
+    const res = await fetch(`https://dummyjson.com/products/category/${category}`);
+    const data:ProductsResponse = await res.json();
+    return data;
+  }
+
   aggiornaStringaRicerca(r: string){
-    console.log('Ricerca aggiornata:', r);
-    
     this.ricerca = r;
   }
 }
