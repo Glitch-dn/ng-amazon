@@ -10,7 +10,7 @@
 </button>
 
 <div
-  class="offcanvas offcanvas-start"
+  class="offcanvas offcanvas-start bg-primary text-white"
   [ngClass]="{ show: isOffcanvasVisible }"
   data-bs-scroll="true"
   tabindex="-1"
@@ -29,9 +29,14 @@
       (click)="toggleOffcanvas()"
     ></button>
   </div>
-  <div class="offcanvas-body">
+  <div class="offcanvas-body" style="border-top: 1px solid rgb(207, 207, 207)">
+    <a href="#" style="text-decoration: none; color: rgb(207, 207, 207)"
+      ><p>All</p></a
+    >
     @for (c of categories; track $index) {
-    <p>{{ c.name }}</p>
+    <a href="#" style="text-decoration: none; color: rgb(207, 207, 207)"
+      ><p>{{ c.name }}</p></a
+    >
     }
   </div>
 </div>
