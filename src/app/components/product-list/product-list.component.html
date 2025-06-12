@@ -1,3 +1,7 @@
-@for (p of filteredProducts(); track $index) {
-<div>{{ p.title }}</div>
-}
+<app-search-bar></app-search-bar>
+<app-category-buttons></app-category-buttons>
+<div class="d-flex flex-wrap gap-4">
+  @for (p of filteredProducts(); track $index) {
+  <app-product-detail [product]="p"></app-product-detail>
+  }
+</div>

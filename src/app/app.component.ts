@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { ProductListComponent } from "./components/product-list/product-list.component";
 import { SearchBarComponent } from "./components/search-bar/search-bar.component";
 import { CategoryButtonsComponent } from "./components/category-buttons/category-buttons.component";
+import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [ProductListComponent, SearchBarComponent, CategoryButtonsComponent],
+  imports: [RouterOutlet,NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

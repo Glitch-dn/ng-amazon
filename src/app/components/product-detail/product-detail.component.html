@@ -1,1 +1,29 @@
-<p>product-detail works!</p>
+@if (product) {
+<div class="card" style="width: 18rem; min-height: 41rem">
+  <img
+    src="{{ product.images }}"
+    class="card-img-top"
+    alt="{{ product.title }}"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{ product.title }}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Brand: {{ product.brand }}</li>
+    <li class="list-group-item">Category: {{ product.category }}</li>
+    <li class="list-group-item">Price: {{ product.price | currency }}</li>
+    <li class="list-group-item">Rating: {{ product.rating }}</li>
+    <li class="list-group-item">Tags: {{ product.tags }}</li>
+  </ul>
+  <div class="card-body" style="text-align: center">
+    <a
+      href="#"
+      class="btn btn-primary"
+      style="width: 100%"
+      [routerLink]="['/products', product.id]"
+    >
+      Info</a
+    >
+  </div>
+</div>
+}
