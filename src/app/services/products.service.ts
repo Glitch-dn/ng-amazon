@@ -51,6 +51,7 @@ export class ProductsService {
   aggiornaStringaRicerca(r: string){
     this.ricerca = r;
   }
+
 }
 
 

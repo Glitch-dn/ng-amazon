@@ -6,7 +6,7 @@
           <h4 class="mb-0">Contattaci</h4>
         </div>
         <div class="card-body">
-          <form>
+          <form (ngSubmit)="sendMessage()" #contattiForm="ngForm">
             <div class="mb-3">
               <label for="nome" class="form-label">Nome</label>
               <input
@@ -14,8 +14,18 @@
                 class="form-control"
                 id="nome"
                 placeholder="Inserisci il tuo nome"
+                required
+                [(ngModel)]="contact.nome"
+                name="nome"
+                #inputNome="ngModel"
+                [ngClass]="{
+                  'is-invalid': inputNome.invalid && inputNome.touched
+                }"
               />
             </div>
+            @if(inputNome.invalid && inputNome.touched) {
+            <div class="mb-3" style="color: red">Nome obbligatorio</div>
+            }
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input
@@ -23,8 +33,18 @@
                 class="form-control"
                 id="email"
                 placeholder="nome@email.com"
+                required
+                [(ngModel)]="contact.email"
+                name="email"
+                #inputEmail="ngModel"
+                [ngClass]="{
+                  'is-invalid': inputEmail.invalid && inputEmail.touched
+                }"
               />
             </div>
+            @if(inputEmail.invalid && inputEmail.touched) {
+            <div class="mb-3" style="color: red">Email obbligatoria</div>
+            }
             <div class="mb-3">
               <label for="messaggio" class="form-label">Messaggio</label>
               <textarea
@@ -32,9 +52,29 @@
                 id="messaggio"
                 rows="5"
                 placeholder="Scrivi qui il tuo messaggio"
+                required
+                minlength="10"
+                [(ngModel)]="contact.messaggio"
+                name="messaggio"
+                #textareaMessaggio="ngModel"
+                [ngClass]="{
+                  'is-invalid':
+                    textareaMessaggio.invalid && textareaMessaggio.touched
+                }"
               ></textarea>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Invia</button>
+            @if(textareaMessaggio.invalid && textareaMessaggio.touched) {
+            <div class="mb-3" style="color: red">
+              Messaggio obbligatorio, minimo 10 caratteri
+            </div>
+            }
+            <button
+              type="submit"
+              class="btn btn-primary w-100"
+              [disabled]="contattiForm.invalid"
+            >
+              Invia
+            </button>
           </form>
         </div>
       </div>
